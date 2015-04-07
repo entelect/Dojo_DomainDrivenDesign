@@ -1,8 +1,8 @@
 ##Domain Driven Design Dojo - Example
 ___
-This Example shows an Anaemic Domain and Rich Domain implementing the same set of Business Rules for comparison.
+This Example shows an Anaemic Domain and Rich Domain implementing the same set of Business Rules.
 
-A rule change is then intoduced with with the changes reflected in each implementation.
+A rule change is then introduced with the changes reflected in each implementation.
 ___
 **Business Rules Reflected in the 1.Anaemic and 2.RichDomain Projects**
 
