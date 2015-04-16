@@ -4,6 +4,67 @@ using System.Linq;
 
 namespace _3.Anaemic.Changed
 {
+    public class LeaveEntry
+    {
+        public LeaveEntry()
+        {
+            this.Approvers = new List<Employee>();
+        }
+
+        public int EmployeeId { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public LeaveType LeaveType { get; set; }
+
+        public LeaveStatus LeaveStatus { get; set; }
+
+        public List<Employee> Approvers { get; private set; }
+
+        public Employee CurrentApprover { get; set; }
+
+        public byte[] Document { get; set; } //Change
+    }
+
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public string Name { get; set; }
+
+        public bool IsManager()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public enum LeaveType
+    {
+        Annual,
+        Study,
+        Sick //Change
+    }
+
+    public enum LeaveStatus
+    {
+        Pending,
+        Approved,
+        Finalized,
+        AwaitingDocumentation //Change
+    }
+
+    public class LeaveInputModel
+    {
+        public int EmployeeId { get; set; }
+
+        public LeaveType LeaveType { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+    }
+
     public class LeaveService
     {
         private readonly ILeaveRepository leaveRepository;
@@ -48,14 +109,15 @@ namespace _3.Anaemic.Changed
         {
             var leave = this.leaveRepository.FindById(leaveId);
 
-            var approverIndex = leave.Approvers.FindIndex(x => x.EmployeeId == leave.CurrentApprover.EmployeeId);
+            var approverIndex = leave.Approvers
+                .FindIndex(x => x.EmployeeId == leave.CurrentApprover.EmployeeId);
             if(approverIndex < leave.Approvers.Count - 1) //todo make better if time left
             {
                 leave.CurrentApprover = leave.Approvers.ElementAt(approverIndex + 1);
             }
             else
             {
-                throw new Exception("Cannot Excalate");
+                throw new Exception("Cannot Escalate");
             }
             this.leaveRepository.Update(leave);
         }
@@ -125,64 +187,5 @@ namespace _3.Anaemic.Changed
         IEnumerable<LeaveEntry> FindAll();
     }
 
-    public class LeaveEntry
-    {
-        public LeaveEntry()
-        {
-            this.Approvers = new List<Employee>();
-        }
 
-        public int EmployeeId { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
-
-        public LeaveType LeaveType { get; set; }
-
-        public LeaveStatus LeaveStatus { get; set; }
-
-        public List<Employee> Approvers { get; private set; }
-
-        public Employee CurrentApprover { get; set; }
-
-        public byte[] Document { get; set; } //Change
-    }
-
-    public class Employee
-    {
-        public int EmployeeId { get; set; }
-        public string Name { get; set; }
-
-        public bool IsManager()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public enum LeaveType
-    {
-        Annual,
-        Study,
-        Sick //Change
-    }
-
-    public enum LeaveStatus
-    {
-        Pending,
-        Approved,
-        Finalized,
-        AwaitingDocumentation //Change
-    }
-
-    public class LeaveInputModel
-    {
-        public int EmployeeId { get; set; }
-
-        public LeaveType LeaveType { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
-    }
 }

@@ -65,7 +65,7 @@ namespace _2.RichDomain
         {
             if(this.currentApproveStep.NexStep == null)
             {
-                throw new Exception("Cannot Excalate");
+                throw new Exception("Cannot Escalate");
             }
 
             this.currentApproveStep = this.currentApproveStep.NexStep;
