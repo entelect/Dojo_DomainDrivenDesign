@@ -13,8 +13,8 @@
     * platinum: R75 per visit | R1000 max
 
 ---
-Show Your Ubiquitous Language
-Show Your Design
+* Show Your Ubiquitous Language
+* Show Your Design
 
 
 
