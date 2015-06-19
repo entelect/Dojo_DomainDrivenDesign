@@ -37,4 +37,4 @@ Add a Blue membership
 * Refund per visit from the start of membership
 * Minimum 6 visits per month
 * R35 per visit
-* R400 per visit
+* R400 Max
