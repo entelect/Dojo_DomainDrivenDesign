@@ -12,8 +12,9 @@
     * gold: R50 per visit | R600 max
     * platinum: R75 per visit | R1000 max
 
-
-
+---
+Show Your Ubiquitous Language
+Show Your Design
 
 
 
